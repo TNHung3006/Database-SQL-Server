@@ -1,5 +1,5 @@
 ﻿------------------------------------------------------------
--- ////// Truy vấn đệ quy sử dụng CTE \\\\\\
+-- ////// Stored procedure là gì \\\\\\
 
 --Stored procedure là gì?
 

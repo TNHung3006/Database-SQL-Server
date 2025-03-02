@@ -48,14 +48,13 @@ SELECT *
 FROM short_e;
 
 --VD Lấy thông tin về các sản phẩm (Products) có cùng thể loại với một sản phẩm cụ thể
-
 --Sử dụng Sub Query
 SELECT ProductName, CategoryID
 FROM Products
 WHERE CategoryID = (
 	SELECT CategoryID
 	FROM Products
-	WHERE ProductName = 'tên sản phẩm cụ thể'
+	WHERE ProductName = 'Genen Shouyu' -- =2
 );
 --Sử dụng CTE
 WITH ProductCategory AS (
@@ -68,8 +67,8 @@ FROM dbo.Products AS P
 JOIN ProductCategory AS PC 
 ON P.CategoryID = PC.CategoryID;
 
---Lấy thông tin về đơn hàng (Orders) cùng với tổng giá trị đơn hàng và tỷ lệ giữa
---tổng giá trị và phí giao hàng(Freight)
+--Lấy thông tin về đơn hàng (Orders) cùng với tổng giá trị đơn hàng và 
+--tỷ lệ giữa tổng giá trị và phí giao hàng(Freight)
 --Sử dụng sub query
 SELECT OrderID, Freight, (
 		SELECT SUM(od.Quantity*od.UnitPrice) 
@@ -93,7 +92,7 @@ SELECT	o.OrderID,
 		qu.total, 
 		qu.total/o.Freight AS "tỉ lệ"
 FROM dbo.Orders o
-JOIN Quantity_UnitPrice qu ON qu.OrderID = o.OrderID;
+JOIN Quantity_UnitPrice AS qu ON qu.OrderID = o.OrderID;
 
 --VD Sử dụng CTE để tính tổng doanh số bán hàng cho từng sản phẩm từ hai bảng
 --"Order Details" và "Products" trong cơ sở dữ liệu NorthWind.
